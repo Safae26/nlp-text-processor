@@ -165,19 +165,19 @@ if process_button and text_input:
             
             # Stemming
             if stemming and tokens:
-                stemmer = SnowballStemmer('french')
+                stemmer = SnowballStemmer('english')  # Changé à anglais
                 stemmed_tokens = [stemmer.stem(token) for token in tokens]
                 data['Stem'] = stemmed_tokens
             
             # Lemmatization
             if lemmatization and tokens:
                 try:
-                    nlp = spacy.load("fr_core_news_sm")
+                    nlp = spacy.load("en_core_web_sm")  # Changé à modèle anglais
                     doc = nlp(" ".join(tokens))
                     lemmatized_tokens = [token.lemma_ for token in doc]
                     data['Lemma'] = lemmatized_tokens
                 except OSError:
-                    st.warning("French spaCy model not installed. Installation: `python -m spacy download fr_core_news_sm`")
+                    st.warning("English spaCy model not installed. Installation: `python -m spacy download en_core_web_sm`")
                     lemmatization = False
 
             # Create and display DataFrame

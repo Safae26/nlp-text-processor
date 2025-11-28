@@ -14,7 +14,7 @@ def word_tokenizer(text, tokenizer_type):
     elif tokenizer_type == "split":
         tokens = text.split() 
     elif tokenizer_type == "spaCy":
-        nlp = spacy.load("fr_core_news_sm")
+        nlp = spacy.load("en_core_web_sm")  # Changé à modèle anglais
         doc = nlp(text)
         tokens = [token.text for token in doc]
     elif tokenizer_type == "TextBlob":
@@ -31,7 +31,7 @@ def sentence_tokenizer(text, tokenizer_type):
     elif tokenizer_type == "split":
         sentences = [sentence.strip() for sentence in text.split(".") if sentence.strip()]
     elif tokenizer_type == "spaCy":
-        nlp = spacy.load("fr_core_news_sm")
+        nlp = spacy.load("en_core_web_sm")  # Changé à modèle anglais
         doc = nlp(text)
         sentences = [sentence.text.strip() for sentence in doc.sents]
     elif tokenizer_type == "TextBlob":
@@ -61,12 +61,12 @@ def normalize(text, operation):
         raise ValueError("Normalization operation not recognized")
     
 def remove_stop_words(tokens): 
-    stop_words = set(stopwords.words('french'))
+    stop_words = set(stopwords.words('english'))  # Déjà en anglais
     filtered_tokens = [token for token in tokens if token.lower() not in stop_words]
     return filtered_tokens
 
 def POS_tag(tokens):
-    nlp = spacy.load("fr_core_news_sm")
+    nlp = spacy.load("en_core_web_sm")  # Changé à modèle anglais
     doc = nlp(" ".join(tokens))
     pos_tags = [(token.text, token.pos_) for token in doc]
     return pos_tags
