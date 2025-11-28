@@ -1,0 +1,1 @@
+## Pour executer l'application : .\myenv\Scripts\python.exe -m streamlit run gui.py
